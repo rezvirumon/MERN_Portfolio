@@ -70,7 +70,7 @@ const Navbar = () => {
                                 About Me
                             </Link>
                             <Link to="/" className="text-base-content dark:text-base-content hover:text-primary dark:hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
-                                Services
+                                Skill
                             </Link>
                             <Link to="/" className="text-base-content dark:text-base-content hover:text-primary dark:hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
                                 Events
@@ -118,10 +118,10 @@ const Navbar = () => {
                         </div>
                     </div>
                     <Link to="/" className="text-base-content dark:text-base-content hover:text-primary dark:hover:text-primary block px-3 py-2 rounded-md text-base font-medium">
-                        About Me
+                        About
                     </Link>
                     <Link to="/" className="text-base-content dark:text-base-content hover:text-primary dark:hover:text-primary block px-3 py-2 rounded-md text-base font-medium">
-                        Services
+                        Skill
                     </Link>
                     <Link to="/" className="text-base-content dark:text-base-content hover:text-primary dark:hover:text-primary block px-3 py-2 rounded-md text-base font-medium">
                         Events
