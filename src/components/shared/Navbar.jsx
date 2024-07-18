@@ -8,6 +8,12 @@ const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+    const logoData = {
+        icon: <MdOutlineDeviceHub className="" />,
+        imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCNKJddOzxVMDPogvH0eKfHAe0d7Bp3jjunA&s', // Replace with your image path
+        alt: "Logo"
+    };
+
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme') || 'winter';
         document.documentElement.setAttribute('data-theme', savedTheme);
@@ -39,7 +45,11 @@ const Navbar = () => {
                     <div className="flex items-center">
                         <div className="flex-shrink-0">
                             <Link to="/" className="text-3xl font-bold">
-                                <MdOutlineDeviceHub className="" />
+                                {logoData.imageUrl ? (
+                                    <img src={logoData.imageUrl} alt={logoData.alt} className="h-10 w-24 object-cover" />
+                                ) : (
+                                    logoData.icon
+                                )}
                             </Link>
                         </div>
                         <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
@@ -55,7 +65,7 @@ const Navbar = () => {
                                     </svg>
                                 </button>
                                 {/* Dropdown menu */}
-                                <div className={`${isDropdownOpen ? 'block' : 'hidden'} absolute mt-1 bg-white shadow-lg rounded-md w-40`}>
+                                <div className={`${isDropdownOpen ? 'block' : 'hidden'} absolute z-50 mt-1 bg-white shadow-lg rounded-md w-40`}>
                                     <Link to="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
                                         Networking
                                     </Link>
@@ -74,6 +84,9 @@ const Navbar = () => {
                             </Link>
                             <Link to="/" className="text-base-content dark:text-base-content hover:text-primary dark:hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
                                 Events
+                            </Link>
+                            <Link to="/setting" className="text-base-content dark:text-base-content hover:text-primary dark:hover:text-primary px-3 py-2 rounded-md text-sm font-medium">
+                                Setting
                             </Link>
                         </div>
                     </div>
@@ -95,7 +108,6 @@ const Navbar = () => {
             </div>
             <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} sm:hidden`}>
                 <div className="px-2 pt-2 pb-3 space-y-1">
-                   
                     <div className="relative">
                         <button
                             onClick={toggleDropdown}
