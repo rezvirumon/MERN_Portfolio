@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { IoMdDownload } from "react-icons/io";
+import { motion } from 'framer-motion';
 
 const Banner = () => {
     const [bannerData, setBannerData] = useState({
@@ -40,9 +41,22 @@ const Banner = () => {
                     />
                     <div>
                         <h1 className="text-xl font-bold">{bannerData.greeting}</h1>
-                        <h1 className="lg:text-5xl text-3xl py-6 font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-green-500">
+                        <motion.h1
+                            className="lg:text-5xl text-3xl py-6 font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-green-500"
+                            initial={{ scale: 1 }}
+                            animate={{
+                                scale: [1, 1.05, 1],
+                                opacity: [1, 0.8, 1]
+                            }}
+                            transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                repeatType: 'loop',
+                                ease: 'easeInOut'
+                            }}
+                        >
                             {bannerData.name}
-                        </h1>
+                        </motion.h1>
                         <p className="pb-6">
                             {bannerData.description} <a href={bannerData.readMoreLink} className="text-purple-500">Read More.....</a>
                         </p>

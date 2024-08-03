@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-
+import { motion } from 'framer-motion';
 
 const Skill = () => {
     const [skills, setSkills] = useState([]);
@@ -20,9 +19,6 @@ const Skill = () => {
     };
 
     const renderSkillIcon = (logoUrl) => {
-        // You can handle rendering based on the logo URL or any other criteria
-        // For example, if you have specific conditions based on the logo URL structure
-        // Here, assuming you have the logo URL as an image
         return <img src={logoUrl} alt="Skill Logo" className="h-12 w-12" />;
     };
 
@@ -32,12 +28,23 @@ const Skill = () => {
             <div className="container mx-auto text-center">
                 <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
                     {skills.map((skill, index) => (
-                        <div key={index} className="flex flex-col items-center border-purple-700 shadow-xl hover:bg-base-300 transition-all ease-in-out p-5">
-                            <div className="text-6xl text-primary mb-4 p-2">
+                        <motion.div
+                            key={index}
+                            className="flex flex-col items-center border-purple-700 shadow-xl p-5"
+                            whileHover={{ scale: 1.05, rotate: 2 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 10 }}
+                        >
+                            <motion.div
+                                className="text-6xl text-primary mb-4 p-2"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                            >
                                 {renderSkillIcon(skill.logo)}
-                            </div>
+                            </motion.div>
                             <p className="text-xl font-semibold">{skill.name}</p>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>

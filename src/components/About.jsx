@@ -1,4 +1,6 @@
-import { FaFacebook, FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { FaFacebook, FaGithub, FaLinkedin, FaWhatsapp } from 'react-icons/fa';
 
 // Define JSON data (can be imported from a separate file or defined inline)
 const profileData = {
@@ -20,26 +22,45 @@ const About = () => {
             <h2 className="text-center my-10 text-3xl font-semibold border-b pb-4 border-purple-700">About</h2>
             <div className="container mx-auto">
                 <div className="flex flex-col-reverse lg:flex-row lg:justify-between items-center">
-                    <div className="lg:w-1/2">
+                    <motion.div
+                        className="lg:w-1/2"
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6 }}
+                    >
                         <p className="text-justify">
                             {profileData.description}
                         </p>
                         {/* Social Icons */}
                         <div className="flex gap-5 text-2xl my-5 justify-center lg:justify-start">
                             {profileData.socialIcons.map((iconData) => (
-                                <a key={iconData.id} href={iconData.link} target="_blank" rel="noopener noreferrer" className="border hover:border-purple-600 transition-all ease-in-out p-2 ">
+                                <motion.a
+                                    key={iconData.id}
+                                    href={iconData.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="border hover:border-purple-600 transition-all ease-in-out p-2"
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    transition={{ type: 'spring', stiffness: 300 }}
+                                >
                                     <iconData.icon title={iconData.name} />
-                                </a>
+                                </motion.a>
                             ))}
                         </div>
-                    </div>
-                    <div className="lg:w-1/2 flex justify-center lg:justify-end mb-6 lg:mb-0 lg:ml-6">
+                    </motion.div>
+                    <motion.div
+                        className="lg:w-1/2 flex justify-center lg:justify-end mb-6 lg:mb-0 lg:ml-6"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                    >
                         <img
                             src={profileData.imageUrl}
                             className="p-2 border-2 h-96 shadow-2xl border-purple-700"
                             alt={profileData.name}
                         />
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </div>
